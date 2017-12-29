@@ -11,11 +11,18 @@ The idea behind it, is to play with physical things, make something colorful and
 get familiar with the technologies. 
 
 ### Technologies:
-* use platformio
+* use PlatformIO
 * use attiny85
-* use clion
+* use CLion
 
-## Learning path
+## My Personal Learning Path
+### General
+I will not consolidate my conclusions but rather try just to note down, what I did. The hope is, that 
+I will not wait documenting it until I understood what I did (what will maybe never happen), but rather
+document "on time".
+
+
+### Phase 1: Initial tooling
 * use platformio to initialize the project:
   * `platformio init -b attiny85 --ide clion -d lightcontrol`
   * Turn off virus scanner while initializing the project. Scary, but...
@@ -35,5 +42,13 @@ get familiar with the technologies.
   * After this change, zhe platform.io commands are available in CLion
 
 * Build with attiny produced interrupt warnings.
-  * Again, nno idea, if this is bad or not
-  * I will see, when I will integrate and upload my project onto the attiny85   
+  * Again, no idea, if this is bad or not
+  * I will see, as soos as I integrate and upload my project onto the attiny85
+  
+##Resources
+
+* [Programmable AProgrammable RGB Mood Light - Attiny85](http://www.instructables.com/id/Programmable-RGB-Mood-Light-Attiny85/)
+* [PlatformIO](http://platformio.org/)
+* [PlatformIO CLion integration](http://docs.platformio.org/en/latest/ide/clion.html)
+* [PlatformIO attiny boards](http://docs.platformio.org/en/latest/platforms/atmelavr.html#generic-attiny)
+* [Jetbrains CLion](https://www.jetbrains.com/clion/)  
