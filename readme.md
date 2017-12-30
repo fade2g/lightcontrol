@@ -1,8 +1,8 @@
-Control RGD LED with potentiometer
+Control RGD LED with Potentiometer
 === 
 
 ## Basic Idea
-Use one or more potentiometers to control an aray of RGD LEDs.
+Use one or more potentiometers to control an array of RGD LEDs.
 
 Can be changing color oder color change mode. Can be brightness, can be a lot
 of stuff. I'll see as I go.
@@ -49,7 +49,7 @@ document "on time".
 
 * Build with attiny produced interrupt warnings.
   * Again, no idea, if this is bad or not
-  * I will see, as soos as I integrate and upload my project onto the attiny85
+  * I will see, as soon as I integrate and upload my project onto the attiny85
   
   
 ### FastLED
@@ -57,15 +57,15 @@ document "on time".
   * You can search libraries with `platformio lib search ` and the search term
   * For CLion, project needs t be re-inited using `platformio init`
     * BTW: It recreates the CMakeListsPrivate.txt
-  * After that, in main.cpp, the FastLED library can be incuded with `#include <FastLED.h>`  
+  * After that, in main.cpp, the FastLED library can be included with `#include <FastLED.h>`  
   
 ##Resources
 
 * [Programmable RGB Mood Light - Attiny85](http://www.instructables.com/id/Programmable-RGB-Mood-Light-Attiny85/) - Inspiration on wiring
-* [PlatformIO](http://platformio.org/) - The tooling for uing 
+* [PlatformIO](http://platformio.org/) - The tooling for using 
 * [PlatformIO CLion integration](http://docs.platformio.org/en/latest/ide/clion.html)
 * [PlatformIO attiny boards](http://docs.platformio.org/en/latest/platforms/atmelavr.html#generic-attiny)
 * [Jetbrains CLion](https://www.jetbrains.com/clion/) -  The IDE I'm using
-* [fastled Animation Library](http://fastled.io/) - Used for controlling WS2812B and other RGB LEDs
+* [Fastled Animation Library](http://fastled.io/) - Used for controlling WS2812B and other RGB LEDs
 * [Arduino Stack Exchange, Clion + arduino](https://arduino.stackexchange.com/a/20296) - Some additional workflow hints
-* [Another CLion ATTINY FastLED Project from me](https://github.com/fade2g/attiny85_platformio_fastled)  
+* [Another CLion attiny FastLED Project from me](https://github.com/fade2g/attiny85_platformio_fastled)  
