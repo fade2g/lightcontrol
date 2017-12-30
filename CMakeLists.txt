@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 project(lightcontrol)
 
-include( CMakeListsPrivate.txt )
+include(CMakeListsPrivate.txt)
 
 add_custom_target(
     PLATFORMIO_BUILD ALL
@@ -51,4 +51,4 @@ add_custom_target(
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(${PROJECT_NAME} ${SRC_LIST} src/main.cpp)
+add_executable(${PROJECT_NAME} ${SRC_LIST})

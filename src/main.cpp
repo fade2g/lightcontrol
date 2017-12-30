@@ -3,6 +3,7 @@
 //
 
 #include <Arduino.h>
+#include <FastLED.h>
 
 const int LED_PIN = 0;
 
