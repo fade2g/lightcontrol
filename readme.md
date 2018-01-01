@@ -82,7 +82,7 @@ Programmer Board (front) | Programmer Board (back) | attiny in action | sizes
 ![Front](./docs/programmer_board_front.jpg) | ![Back](./docs/programmer_board_back.jpg) | ![Blink](./docs/attiny_poc.jpg) | ![Size Comparision](./docs/sizes.jpg)
   
   
-##Resources
+## Resources
 
 * [Programmable RGB Mood Light - Attiny85](http://www.instructables.com/id/Programmable-RGB-Mood-Light-Attiny85/) - Inspiration on wiring
 * [PlatformIO](http://platformio.org/) - The tooling for using 
