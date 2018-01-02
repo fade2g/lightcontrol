@@ -71,16 +71,65 @@ are not recognized on my machine.
   * I did this with the "normal" arduino IDE as I did not want to fiddle with platformIO. But as I understood, you can define a programmer for platformIO and then programming should work  via platformIO
   * What is no good: To programm attiny I have to put it into the programmer, but to use the attiny, I have to remove it and put it wherever I need.
     This makes no fun and I easily pend the pins and then it is dead.
-  * As is understand, the micronucleas is a tiny bootloader to enable USB communication. This would make the dev board useful, if I can burn it on the attiny
+  * As is understand, the [micronucleus](https://github.com/micronucleus/micronucleus) is a tiny bootloader to enable USB communication. This would make the dev board useful, if I can burn it on the attiny
     (I already killed ony by simply clicking "burn bootloader" in the arduino IDE)
   * This should be my next step in this project  
-  
-  
 
 Programmer Board (front) | Programmer Board (back) | attiny in action | sizes
 -------------------------|-------------------------|-------------------|------
 ![Front](./docs/programmer_board_front.jpg) | ![Back](./docs/programmer_board_back.jpg) | ![Blink](./docs/attiny_poc.jpg) | ![Size Comparision](./docs/sizes.jpg)
+ 
   
+### Intermezzo: What Actually Should I Do?
+At the beginning I wrote something about learning, tinkering, RGB LED, platformIO,... Thi si al interesting, but what should the project be able to
+do in the end? My current plan is to have 3 or 4 potentiometers to control a ring als RGB LEDs. As an initial approach I could control the color via HSL or similar.
+This requires 3 potentiometers. And it would be non-animated and static. The 4th potentiometer (or button) could control the type of program to be executed, i.e. what
+the other 3 potentiometers actually control. E.g. instead of controlling the S and L value, the second and third potentiometer could control
+an animation (e.g. speed / direction). The possibilities are endless (ok, most probably not, but...). 
+BTW: FastLED calls the color model [HSV](https://github.com/FastLED/FastLED/wiki/FastLED-HSV-Colors). Or maybe ist is just similar. It will do. 
+
+For the initial implementation I will go with 3 potentiometers and HSL control. Fourth will be added "on demand" as the project grows and succeeds.
+
+At least it looks like attiny offers [5 pins to be used](http://forum.arduino.cc/index.php?topic=87517.0) (without special stuff). one for the RGB LED and 4 to play around.
+
+I mean, I haven't a bootloader, must figure out how to read potentiometer values (and connect them without killing the attiny)
+and I have no power supply so far (e.g. battery vs. USB, separate power supply for LED and attiny,...). And a case would be nice as well.
+
+Ok, again: 3 potentiometers and HSL          
+
+### Phase 3: Micronucleus Bootloader - Protect my Pins
+In order to be able to use attiny directly without putting in to programmer and in breadboard / dev board and the back into programmer , I will try
+to burn the [micronucleus](https://github.com/micronucleus/micronucleus) bootloader onto the attiny. My failed trials while learning, that the dev board has no programmer, indicated, that for windows 10
+there are some issues with installing libusb driver, which on the other hand seams to be required for micronucleus. So should be prepared to
+spend a lot of time and be disappointed in the end. But that was my impression during phase 2 as well.
+
+So, figure out how to used arduino nano programmer to program attiny to have a bootloader...
+
+* avrdude is the programm to programm AVR like the attiny
+* (Most probably) with the installation of the arduino IDE, avrdude is installed
+* When you upload the program using arduino, in the preferences you can set verbose output and you see the avrdude commanc.
+  This can be the basis for copy & paste the upload command for micronucleus 
+* To upload micronucleus, I followed the instructions indicated [here](https://electronics.stackexchange.com/questions/161361/burn-micronucleus-bootloader-to-use-attiny85-via-usb-avrdude)
+* The get the hex files, I just cloned the github repo from micronucleus
+* The command I executed: `"C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avrdude.exe" -C"C:\Program Files (x86)\Arduino\hardware\tools\avr/etc/avrdude.conf" -v -v -v -v -carduino -b19200 -PCOM7 -pattiny85 -Uflash:w:"t85_default.hex" -Ulfuse:w:0xe1:m -Uhfuse:w:0xdd:m -Uefuse:w:0xfe:m`
+  * be careful about the paths
+  * be careful about the COM port
+* Of course, the attiny was connected to my programmer board and was programmed through the arduino nano.
+* As I had already been playing around with the windows 10 driver installation (see docs from micronucleus), I already had [zadig](http://zadig.akeo.ie/) on my computer.
+* Move attiny from the programmer board into the dev board. Tata: Windows 10 recognized the attiny dev board as a "libusb-win32 device" with a "Digispark Bootloader"
+* Looks like I finally arrived where I believed i was when busing the dev board. But: I now know more! 
+
+Next will be using CLion to upload the blink program directly to the attiny in the dev board using micronucleus programmer.
+
+* Reality Check:
+  * I did quite some research
+  * micronucleus is not available through platformIO
+  * Bootloader is "destroyed" during upload via Arduino IDE
+  * Other possible bootloaders that are used for devices with attiny (e.g. Trinket, Digispark) could not be installed
+  * As a consequence, I will for the moment abandon using attiny85 for the development of the project
+    * As a side effect: attiny85 would of course not support serial communication and make my life hard developing (e.g. feedback on potentiometer values)
+  * I will use an Arduino Nano for development and see (and hope) to use attiny85 in the end
+
   
 ## Resources
 
