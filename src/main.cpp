@@ -6,36 +6,34 @@
 #include <FastLED.h>
 #include "pins.cpp";
 
-const int LED_PIN = DEFAULT_LED_PIN;
 int potValue;
-int iterations;
-int iteration = 0;
-int state = LOW;
+int previousPotValue;
+int hueValue;
 
+CRGB leds[NUM_LEDS];
 
 void setup() {
     Serial.begin(115200);
     pinMode(LED_PIN, OUTPUT);
+    LEDS.addLeds<WS2812, LED_PIN,GRB>(leds,NUM_LEDS);
+    LEDS.setBrightness(84);
 }
 
 void loop() {
     potValue = analogRead(POT_PIN_0);
-    iterations = potValue / DELAY_INTERVAL;
-    iteration++;
-    if (iteration > iterations) {
-        if (state == LOW) {
-            state = HIGH;
-        } else {
-            state = LOW;
+    if (previousPotValue != potValue) {
+        hueValue = potValue / 4;
+        for(int i = 0; i < NUM_LEDS; i++) {
+            // Set the i'th led to red
+            leds[i] = CHSV(hueValue, 255, 255);
+            // Show the leds
+            FastLED.show();
         }
-        iteration = 0;
+        previousPotValue = potValue;
     }
     Serial.print("Pot: ");
     Serial.print(potValue);
-    Serial.print("iteration");
-    Serial.print(iteration);
-    Serial.print("iterations");
-    Serial.println(iterations);
-    digitalWrite(LED_PIN, state);
+    Serial.print("Hue: ");
+    Serial.println(hueValue);
     delay(DELAY_INTERVAL);
 }
