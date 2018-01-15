@@ -130,6 +130,30 @@ Next will be using CLion to upload the blink program directly to the attiny in t
     * As a side effect: attiny85 would of course not support serial communication and make my life hard developing (e.g. feedback on potentiometer values)
   * I will use an Arduino Nano for development and see (and hope) to use attiny85 in the end
 
+### Phase 4: Power Supply
+After switching to Nano, development got easier as installation is way easier. Just adjust platform.ini to the Nano board and you're done. So, the software fun begins.
+
+After digging and some initial coding, it just didn't look right. The LED ring did flicker randomly and it llok like as way more stupid than I
+expected to be. I can't event send static values to the ring and it des ot flicker. But it does. After some hours of tinkering and experimenting, I realized:
+The power supply to the LEDs is unstable. My design foresees the LED power directly and only having the data pin from the Nano (or the attiny). To
+convert from 9V block battery to 5V for LED I used a (simple) step down element. It showed, that the power spply was not steady enought so the LED would en get
+the signal properly and hence flicker.
+
+Arduna Non can output vo 0.5 ampères. 12 RGB LED would be too much (if you googled properly), but as rarely, all 3 rolors of the LED wil be on and on
+full power, Adafruit (or Sparkfun) uses as a rough estimate only one third.
+
+So, for development purposes, I connected the LED power supply (and the data connection) to the Nano. And ir worked.
+
+In the mean time, I had already googled some examples on how to make fancy things with the LED ring.
+
+So, here I am with some working installation consisting of software and hardware:
+![Current Setup](./docs/setup_nano_potentiometer.jpg)
+
+
+
+
+
+
   
 ## Resources
 
